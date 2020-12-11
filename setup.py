@@ -6,6 +6,7 @@ import sklearn
 import pickle
 import json
 from configs import variables, Final_Model
+from make_json_test_file import json_object
 
 # initialize Flask
 app = Flask(__name__)
@@ -15,7 +16,6 @@ app = Flask(__name__)
 def callback(request_id, response, exception):
     if exception is not None:
         print(format(request_id, exception))
-        "x5_monday", "x5_saturday", "x5_sunday", "x5_tuesday", "x62", "x81_August", "x81_December", "x81_February", "x81_January", "x81_July", "x81_June", "x81_March", "x81_May", "x81_November", "x81_October", "x81_September", "x91"
     else:
         print(
             format(
@@ -27,12 +27,29 @@ def callback(request_id, response, exception):
                 .get("x53")
                 .get("x56")
                 .get("x58")
+                .get("x5_monday")
+                .get("x5_saturday")
+                .get("x5_sunday")
+                .get("x5_tuesday")
+                .get("x62")
+                .get("x81_August")
+                .get("x81_December")
+                .get("x81_February")
+                .get("x81_January")
+                .get("x81_July")
+                .get("x81_June")
+                .get("x81_March")
+                .get("x81_May")
+                .get("x81_November")
+                .get("x81_October")
+                .get("x81_September")
+                .get("x91")
             )
         )
 
 
 batch = service.new_batch_http_request(callback=callback)
-for student_email in student_emails:
+for row in student_emails:
     student = {"userId": student_email}
     request = service.courses().students().create(courseId=course_id, body=student)
     batch.add(request, request_id=student_email)
