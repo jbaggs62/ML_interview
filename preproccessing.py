@@ -1,8 +1,7 @@
 import pandas
-from post.py import df
 
 
-def clean_final_dataset():
+def clean_final_dataset(dataframe):
     """
     cleaning final dataset based on cleaning that was done in notebook example
     """
@@ -16,7 +15,7 @@ def clean_final_dataset():
     return df
 
 
-def create_final_dataset():
+def create_final_dataset(dataframe):
     """
     function to create dataset with dummy variables and only the variables we want from our inital dataframe we create
     """
