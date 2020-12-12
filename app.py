@@ -1,8 +1,12 @@
 # app.py
-
-from flask import Flask, request  # import main Flask class and request object
+# import main Flask class and request object
+from flask import Flask, request, jsonify
+import json
 import pandas as pd
 from pandas.core.arrays import string_
+from configs import Final_Model, final_fit
+import statsmodels.api as sm
+
 
 app = Flask(__name__)  # create the Flask app
 
@@ -16,7 +20,6 @@ def query_example():
     df = df_prefilter[
         ["x5", "x81", "x31", "x91", "x53", "x44", "x12", "x62", "x58", "x56"]
     ]
-    print(df)
 
     def clean_final_dataset(dataframe):
         """
@@ -56,18 +59,19 @@ def query_example():
         df_final["x81_November"] = [1 if x == "November" else 0 for x in df["x81"]]
         df_final["x81_October"] = [1 if x == "October" else 0 for x in df["x81"]]
         df_final["x81_September"] = [1 if x == "September" else 0 for x in df["x81"]]
-        print(df_final)
         return df_final
 
     # clean dataset
-    clean_final_dataset(df)
+    df = clean_final_dataset(df)
     # create final dataset
-    create_final_dataset(df)
-
-    # create array for modeling
-    array = df_final.to_numpy()
-    print(array)
-    return "request recieved"
+    df_final = create_final_dataset(df)
+    df_final.to_csv("df_final.csv")
+    df_import = pd.read_csv("df_final.csv")
+    model = sm.load("final_fit.pkl")
+    predictions = model.predict(df_import)
+    df_response = pd.DataFrame(predictions, columns=["predictions"])
+    print(df_response)
+    return "we are trying"
 
 
 app.run(debug=True, port=5000)  # run app in debug mode on port 5000
