@@ -65,18 +65,29 @@ def query_example():
 
     # clean dataset
     df = clean_final_dataset(df)
+
     # create final dataset
     df_final = create_final_dataset(df)
+
+    # export than report due to dimension issue this is a quick fix but needs further investigation down the road to increase peformance/ handle thousands of records due to potential storage limitations
     df_final.to_csv("df_final.csv")
     df_import = pd.read_csv("df_final.csv")
+
+    # load in model
     model = sm.load("final_fit.pkl")
+
+    # run predictions
     predictions = model.predict(df_import)
+
+    # create response dataframe
     df_response = pd.DataFrame(predictions, columns=["phat"])
     df_response["business_outcome"] = [
         "event" if x > 0.75 else "not event" for x in df_response["phat"]
     ]
     df_response["variables"] = np.tile(variables, (len(df), 1)).tolist()
     print(df_response)
+
+    # create json resposne and return so that each row in the dataframe is a return in order for easy processing of batch request
     response = df_response.to_json(orient="index")
     return response
 
