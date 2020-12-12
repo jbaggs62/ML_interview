@@ -2,6 +2,7 @@
 # import main Flask class and request object
 from flask import Flask, request, jsonify
 import json
+from flask.wrappers import Response
 import pandas as pd
 from pandas.core.arrays import string_
 from configs import final_fit, variables
@@ -76,7 +77,8 @@ def query_example():
     ]
     df_response["variables"] = np.tile(variables, (len(df), 1)).tolist()
     print(df_response)
-    return "we are trying"
+    response = df_response.to_json(orient="index")
+    return response
 
 
 app.run(debug=True, port=5000)  # run app in debug mode on port 5000
