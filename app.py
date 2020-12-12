@@ -1,7 +1,7 @@
 # app.py
 
 from flask import Flask, request  # import main Flask class and request object
-
+from preproccessing import clean_final_dataset, create_final_dataset
 import pandas as pd
 
 app = Flask(__name__)  # create the Flask app
@@ -17,6 +17,8 @@ def query_example():
         ["x5", "x81", "x31", "x91", "x53", "x44", "x12", "x62", "x58", "x56"]
     ]
     print(df)
+    clean_final_dataset(df)
+    create_final_dataset(df_final)
     return "request recieved"
 
 
