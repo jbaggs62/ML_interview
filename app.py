@@ -4,8 +4,9 @@ from flask import Flask, request, jsonify
 import json
 import pandas as pd
 from pandas.core.arrays import string_
-from configs import Final_Model, final_fit
+from configs import final_fit, variables
 import statsmodels.api as sm
+import numpy as np
 
 
 app = Flask(__name__)  # create the Flask app
@@ -69,7 +70,11 @@ def query_example():
     df_import = pd.read_csv("df_final.csv")
     model = sm.load("final_fit.pkl")
     predictions = model.predict(df_import)
-    df_response = pd.DataFrame(predictions, columns=["predictions"])
+    df_response = pd.DataFrame(predictions, columns=["phat"])
+    df_response["business_outcome"] = [
+        "event" if x > 0.75 else "not event" for x in df_response["phat"]
+    ]
+    df_response["variables"] = np.tile(variables, (len(df), 1)).tolist()
     print(df_response)
     return "we are trying"
 
