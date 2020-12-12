@@ -92,4 +92,4 @@ def query_example():
     return response
 
 
-app.run(debug=True, port=5000)  # run app in debug mode on port 5000
+app.run(debug=True, port=1313)  # run app in debug mode on port 5000
