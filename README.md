@@ -15,9 +15,11 @@ The main code is all in app.py. The test unit test are located in ./test. Variou
 ## How it works
 The code works by using three main functions inside a flask app. There is one parent function that has two smaller functions inside the code that handles the data. The parent function query_example is responsible for getting the request in the form of Post and converting to a dataframe. The cleaning function processes the request using the same data processing steps written in the jupyter notebook. Following the clean the data is then sent to another function, creates final dataframe, that handles the dummy variables for the appropitate fields. Once this data is ready it is then exported out and reloaded in due to a dimensional issue that I was not able to solve in the allotted time frame. The model is than imported and the dataframe uses the statsmodel predict method to come up with the prediction. Following that we then construct our response and return it to our requestor. This is all converted to a docker file that can be built using the build_run.sh script using the code 
 ~~~
+make sure you are in the project root directory 
+then run the following commands
 bash build_run.sh
 ~~~ 
-If you want to test the code you can run to do an end to end test. The unit test require you to install nose package and unittest. 
+If you want to test the code you can run the bash commands below after run the build_run script. The unit test require you to install nose package and unittest. 
 ~~~
 cd ./test
 bash ./test.sh
