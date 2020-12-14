@@ -1,3 +1,5 @@
+#this is still a WIP
+
 import unittest
 from unittest import result
 import pandas as pd
@@ -10,7 +12,7 @@ from app import clean_final_dataset, create_final_dataset, query_example
 class test_clean_final_dataset(unittest.TestCase):
     def ftesting_cleaning_dataset(self):
         """
-        test cleaning final dataset
+        test cleaning final dataset. I created an ugly data frame and cleanded one and compared the two to mak sure the cleaning was working correctly
         """
         d_ugly = {"x12": ["($12,000)"], "x62": ["67%"]}
         d_clean = {"x12": [12000.0], "x62": [67.0]}
@@ -24,7 +26,8 @@ class test_clean_final_dataset(unittest.TestCase):
 class test_create_final_dataset(unittest.TestCase):
     def testing_create_dataset(self):
         """
-        test cleaning final dataset
+        test cleaning final dataset. I created this unit test to verify the dummy variables were being created by taking a sample dataset run the function
+        and verifying it against a correct response
         """
         df_test = pd.read_csv("./test/create_test_db.csv")
         df_right_answer = pd.read_csv("./test/df_final_test.csv")
@@ -36,7 +39,7 @@ class test_create_final_dataset(unittest.TestCase):
 class test_query_example(unittest.TestCase):
     def test_request_response(self):
         """
-        run main function
+        run main function and verify the response is okay
         """
 
         # Send a request to the API server and store the response.
