@@ -53,6 +53,7 @@ def query_example():
             function to create dataset with dummy variables and only the variables we want from our inital dataframe we create
             """
             try:
+                #bringing in the variables we do not need to create dummy variables based on jupyternotebook
                 df_final = df[["x12", "x44", "x53", "x56", "x62", "x91"]]
                 df_final["x31_asia"] = [1 if x == "asia" else 0 for x in df["x31"]]
                 df_final["x31_germany"] = [

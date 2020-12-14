@@ -1,16 +1,14 @@
 #build docker image no-caching for security reasons 
-docker build --no-cache -t jb_ML_interview .
+docker build --no-cache -t jb_ml_interview .
+
+#remove old container 
+
+docker rm jb
 
 #run the container on port 1313
-docker run -p 1313:1313 --name=jb jb_ML_interview --host=0.0.0.0
+docker run -t -p 1313:1313 --name=jb jb_ml_interview 
 
-#make sure its runnning
-
-docker ps
-
-
-#test app
-
+#test code to make sure docker container is online and listening
 
 curl --location --request POST 'http://0.0.0.0:1313/json' \
 --header 'Content-Type: application/json' \
@@ -25,7 +23,7 @@ curl --location --request POST 'http://0.0.0.0:1313/json' \
   "x62": 2,
   "x58": 33,
   "x56": 11,
-  "x57":81
+  "x57":88
 },
 {
   "x5": "tuesday",
@@ -43,5 +41,3 @@ curl --location --request POST 'http://0.0.0.0:1313/json' \
 ]
 
 '
-
-
