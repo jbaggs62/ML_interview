@@ -3,7 +3,6 @@
 ML interview project for State Farm  
 Applicant : Jacob Baggs  
 Current Role: Data Analyst State Farm and Graduate Student
-Role: Machine Learning Engineer Level 1
 Goal Statement: Looking to leverage past experience in analytics to deliever machine learning model into production.
 
 
