@@ -1,6 +1,6 @@
 
 # About Me
-ML interview project for State Farm  
+ML interview project 
 Applicant : Jacob
 Current Role: Data Analyst @ State Farm and Graduate Student
 Goal Statement: Looking to leverage past experience in analytics to deliever machine learning model into production.
