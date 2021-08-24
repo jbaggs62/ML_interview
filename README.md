@@ -2,7 +2,7 @@
 # About Me
 ML interview project   
 Applicant : Jacob  
-Current Role: Data Analyst  and Graduate Student
+Current Role: MLE and Graduate Student
 Goal Statement: Looking to leverage past experience in analytics to deliever machine learning model into production.
 
 
